@@ -19,11 +19,12 @@ services:
     environment:
       POSTGRES_PASSWORD: temporal
       POSTGRES_USER: temporal
-    image: postgres:9.6
+    image: postgres:13-alpine
     networks:
       - temporal-network
     ports:
-      - 5432:5432
+      - 5455:5455
+    command: -p 5455
   temporal:
     container_name: temporal
     depends_on:
@@ -31,7 +32,7 @@ services:
       - elasticsearch
     environment:
       - DB=postgresql
-      - DB_PORT=5432
+      - DB_PORT=5455
       - POSTGRES_USER=temporal
       - POSTGRES_PWD=temporal
       - POSTGRES_SEEDS=postgresql

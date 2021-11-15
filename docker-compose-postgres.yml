@@ -9,14 +9,14 @@ services:
     networks:
       - temporal-network
     ports:
-      - 5432:5432
+      - 5455:5455
   temporal:
     container_name: temporal
     depends_on:
       - postgresql
     environment:
       - DB=postgresql
-      - DB_PORT=5432
+      - DB_PORT=5455
       - POSTGRES_USER=temporal
       - POSTGRES_PWD=temporal
       - POSTGRES_SEEDS=postgresql
